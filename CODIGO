@@ -1,0 +1,13 @@
+import cv2
+import numpy as np
+
+
+imagen1 = np.zeros((500,600), np.uint8)
+cv2.imwrite('Imagennegra.png',imagen1)
+imagenx = cv2.imread('imagennegra.png')
+imagen11 = imagenx.copy()
+cv2.circle(imagen11,(250,300),100,(0,255,0),8)
+cv2.imshow('imagenobscura', imagen11)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
