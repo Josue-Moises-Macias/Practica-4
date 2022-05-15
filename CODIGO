@@ -2,24 +2,19 @@ import cv2
 import numpy as np
 
 
-imagen1 = np.ones((500,600), np.uint8) #crear imagen
-cv2.imwrite('neg.png',imagen1) #guardar imagen
-imagenx = cv2.imread('neg.png') #leer imagen
-imagen11 = imagenx.copy()
-cv2.circle(imagen11,(250,300),100,(0,255,0),8) #dibujar circulo
-cv2.rectangle(imagen11,(100,300),(290,490),(0,0,255),12)
-cv2.putText(imagen11, 'TEXTO 7F', (200,250),cv2.FONT_HERSHEY_COMPLEX, 1.5,(0,255,0),5)
-#escribir texto
-cv2.imshow('Imagen negra modificada', imagen11) #mostrar imagen
-cv2.imwrite('nuevaneg.png',imagen11) #guardar nueva imagen
-imagen2 = cv2.imread('nuevaneg.png') #leer nueva imagen
-hsv = cv2.cvtColor(imagen2, cv2.COLOR_BGR2HSV) #convertir de BGR a HSV
-verdebajito = np.array([25,50,50]) #definicion de intervalos del color verde
-verdefuerte = np.array([67,255,255])
-mask = cv2.inRange(hsv, verdebajito, verdefuerte) #umbralizado de la imagen HSV 
-verde = cv2.bitwise_and(imagen2, imagen2, mask=mask)
-#Uso de funcion Bitwise-AND para usar las mascaras sobre el BGR
-cv2.imshow ('Cosas verdes',verde) #mostrar lo verde
+
+
+
+im = cv2.imread("amonggreen.png")
+r=cv2.selectROI(im)
+imCrop = im[int(r[1]):int(r[1]+r[3]),int(r[0]): int(r[0]+r[2])]
+cv2.imshow("image",imCrop)
+
+    
+
+
+
+
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
